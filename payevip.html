@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; connect-src 'self'; frame-ancestors 'none';" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <title>Paiement-Standard - GABOMA NEW YEAR GALA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Reset et styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Styles pour les logos */
+.logo-aesgfr {
+  position: fixed;
+  top: 35px;
+  right: 50px;
+  width: 110px;
+  height: auto;
+  z-index: 999;
+  border-radius: 50%;
+  padding: 3px;
+  mix-blend-mode: multiply;
+  background: linear-gradient(90deg, #ff6b6b80, #ffa26c6c);
+}
+
+.logo {
+  position: fixed;
+  top: 25px;
+  left: 10px;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  z-index: 3;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.473);
+  background: linear-gradient(90deg, #ff6b6b80, #ffa26c6c);
+  padding: 4px 12px;
+  border-radius: 16px;
+}
+
+/* Styles pour le corps de la page */
+.bodycover {
+  position: relative;
+  min-height: 100vh;
+  padding: 20px;
+  background: url(VIP.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-overlay {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Styles pour le conteneur principal */
+.container {
+  background: rgba(0, 0, 0, 0.134);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgb(248, 248, 248);
+  border-radius: 75px;
+  box-shadow: 0 8px 20px rgb(0, 0, 0);
+  width: 100%;
+  max-width: 280px;
+  padding: 12px 12px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  animation: fadeIn 0.6s ease-out;
+  text-align: center;
+  margin: 25px auto 10px;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b6b80, #ffa26c6c);
+  border-radius: 75px 75px 0 0;
+}
+
+/* Styles pour l'en-tête */
+.header {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+.header h2 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-family: "Style Script", "cursive";
+  font-style: normal;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles pour la section paiement */
+.paye {
+  color: white;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.payment-details {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 14px;
+  padding: 10px 8px;
+  margin: 10px 0;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.payment-details h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-event {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.event-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: rgb(255, 255, 255);
+  font-size: 11px;
+}
+
+.detail-value {
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.highlight {
+  color: #50cb42;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Styles pour les logos des banques */
+.banks-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.bank-logo {
+  margin-bottom: 10px;
+}
+
+.bank-logo img {
+  width: 70px;
+  height: auto;
+  filter: brightness(1.5);
+  transition: all 0.3s ease;
+}
+
+.bank-logo.vtb img {
+  width: 60px;
+  height: auto;
+}
+
+/* Effets hover pour les logos des banques */
+.bank-logo.sberbank:hover img {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 5px 8px rgba(21, 152, 23, 0.4)) brightness(1.5);
+}
+
+.bank-logo.tinkoff:hover img {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 5px 8px rgba(255, 215, 0, 0.4)) brightness(1.5);
+}
+
+.bank-logo.vtb:hover img {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 5px 8px rgba(0, 86, 184, 0.4)) brightness(1.5);
+}
+
+/* Media Queries pour la responsivité améliorée */
+
+@media (max-width: 768px) {
+  /* Ajustements pour tablettes */
+  .logo-aesgfr {
+    width: 60px;
+    top: 10px;
+    right: 10px;
+  }
+  .logo {
+    font-size: 14px;
+    top: 18px;
+    left: 10px;
+  }
+  body {
+    padding: 15px;
+  }
+  .container {
+    border-radius: 60px;
+    padding: 25px 20px;
+    margin: 50px auto 25px;
+  }
+  .container::before {
+    border-radius: 60px 60px 0 0;
+  }
+  .header h2 {
+    font-size: 22px;
+  }
+  .payment-details {
+    padding: 15px 10px;
+    border-radius: 12px;
+    margin: 18px 0;
+  }
+  .payment-details h3 {
+    font-size: 17px;
+  }
+  .detail-item {
+    flex-direction: column;
+    gap: 3px;
+    padding: 6px 0;
+  }
+  .banks-container {
+    gap: 18px;
+  }
+  .bank-logo img {
+    width: 55px;
+  }
+  .bank-logo.vtb img {
+    width: 45px;
+  }
+  .detail-label,
+  .detail-value {
+    font-size: 14px;
+  }
+  .back-btn {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustements pour mobiles moyens */
+  .logo-aesgfr {
+    width: 50px;
+    top: 8px;
+    right: 8px;
+  }
+  .logo {
+    font-size: 12px;
+    top: 16px;
+    left: 8px;
+    padding: 3px 10px;
+  }
+  .container {
+    border-radius: 50px;
+    padding: 20px 15px;
+    margin: 45px auto 20px;
+  }
+  .container::before {
+    height: 3px;
+    border-radius: 50px 50px 0 0;
+  }
+  .header h2 {
+    font-size: 20px;
+  }
+  .paye {
+    padding: 10px 0;
+  }
+  .payment-details {
+    padding: 12px 8px;
+    border-radius: 10px;
+  }
+  .payment-details h3 {
+    font-size: 16px;
+  }
+  .detail-label,
+  .detail-value {
+    font-size: 13px;
+  }
+  .highlight {
+    font-size: 13px;
+  }
+  .banks-container {
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .bank-logo img {
+    width: 50px;
+  }
+  .bank-logo.vtb img {
+    width: 40px;
+  }
+  .back-btn {
+    padding: 7px 14px;
+    font-size: 13px;
+    margin-top: 12px;
+    border-radius: 12px;
+  }
+  .event-info {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Ajustements pour petits mobiles */
+  .container {
+    border-radius: 40px;
+    padding: 18px 12px;
+  }
+  .container::before {
+    border-radius: 40px 40px 0 0;
+  }
+  .header h2 {
+    font-size: 18px;
+  }
+  .banks-container {
+    gap: 12px;
+  }
+  .bank-logo img {
+    width: 45px;
+  }
+  .bank-logo.vtb img {
+    width: 38px;
+  }
+  .detail-event {
+    gap: 6px;
+  }
+  .payment-details {
+    border-radius: 9px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+    </style>
+</head>
+
+<body class="bodycover">
+    <img src="aesgfr.jpg" alt="Logo AESGFR" class="logo-aesgfr" />
+    <div class="background-overlay"></div>
+    <div class="logo">
+        <span><strong><em>PREMIUM</em></strong></span>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h2 class="header">GABOMA NEW YEAR GALA</h2>
+        </div>
+
+        <div class="payment-details">
+            <div class="paye">
+                <h2><i class="fas fa-credit-card"></i> Paiement</h2>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Type de billet:</span>
+                <span class="detail-value highlight">Premium</span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Quantité:</span>
+                <span class="detail-value">1 billet</span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Prix unitaire:</span>
+                <span class="detail-value">5.000 ₽</span>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Total:</span>
+                <span class="detail-value highlight">5.000 ₽</span>
+            </div>
+        </div>
+
+        <div class="banks-container">
+            <a href="#" class="bank-logo sberbank">
+                <img src="Sber.png" alt="Sberbank" onerror="this.style.display='none';" />
+            </a>
+
+            <a href="#" class="bank-logo tinkoff">
+                <img src="T-Bank.png" alt="Tinkoff" onerror="this.style.display='none';" />
+            </a>
+
+            <a href="#" class="bank-logo vtb">
+                <img src="VTB.png" alt="VTB" onerror="this.style.display='none';" />
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Initialisation d'EmailJS
+(function () {
+  emailjs.init("9ESKhIvGP_ouNuglQ"); // Remplacez par votre clé publique EmailJS
+})();
+
+// Création de particules animées
+const particlesContainer = document.getElementById("particles");
+const particleCount = 20;
+
+for (let i = 0; i < particleCount; i++) {
+  const particle = document.createElement("div");
+  particle.classList.add("particle");
+
+  // Position et taille aléatoires
+  const size = Math.random() * 8 + 2;
+  const posX = Math.random() * 100;
+  const posY = Math.random() * 100;
+  const animationDelay = Math.random() * 5;
+
+  particle.style.width = `${size}px`;
+  particle.style.height = `${size}px`;
+  particle.style.left = `${posX}%`;
+  particle.style.top = `${posY}%`;
+  particle.style.animationDelay = `${animationDelay}s`;
+  particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+  particlesContainer.appendChild(particle);
+}
+
+// Gestion du paiement
+const form = document.getElementById("paymentForm");
+const payButton = document.getElementById("payButton");
+const confirmation = document.getElementById("confirmation");
+const closeConfirmation = document.getElementById("closeConfirmation");
+const loading = document.getElementById("loading");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const cardNumber = document
+    .getElementById("cardNumber")
+    .value.replace(/\s/g, "");
+  const expiry = document.getElementById("expiry").value;
+  const cvv = document.getElementById("cvv").value;
+  const cardName = document.getElementById("cardName").value;
+
+  // Validation basique
+  if (!cardNumber || !expiry || !cvv || !cardName) {
+    alert("Veuillez remplir tous les champs");
+    return;
+  }
+
+  if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+    alert("Numéro de carte invalide");
+    return;
+  }
+
+  if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+    alert("Date d'expiration invalide (MM/AA)");
+    return;
+  }
+
+  if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+    alert("CVV invalide");
+    return;
+  }
+
+  // Afficher l'indicateur de chargement
+  loading.style.display = "block";
+  payButton.disabled = true;
+
+  // Délai simulé pour le traitement
+  setTimeout(() => {
+    // Récupérer les données utilisateur depuis les cookies
+    const userReservation = getCookie("userReservation");
+    if (userReservation) {
+      const userData = JSON.parse(userReservation);
+
+      // Mettre à jour le statut
+      userData.status = "paid";
+      userData.paymentDate = new Date().toISOString();
+      setCookie("userReservation", JSON.stringify(userData), 30);
+
+      // Préparer les paramètres pour EmailJS
+      const templateParams = {
+        from_name: `${userData.firstname} ${userData.lastname}`,
+        from_email: userData.email,
+        to_name: "Client",
+        message: `Cher ${userData.firstname} ${
+          userData.lastname
+        },\n\nVotre paiement de 50 000 FCFA pour le billet VIP du Gala Gaboma a été confirmé.\n\nDétails:\n- Type: ${
+          userData.ticketType
+        }\n- Date de réservation: ${new Date(
+          userData.reservationDate
+        ).toLocaleDateString(
+          "fr-FR"
+        )}\n- Date de paiement: ${new Date().toLocaleDateString(
+          "fr-FR"
+        )}\n\nVotre billet est maintenant actif.\n\nCordialement,\nAESGFR`,
+        date: new Date().toLocaleString("fr-FR"),
+      };
+
+      // Envoyer l'email via EmailJS
+      emailjs
+        .send("essongapea.b.a@gmail.com", "template_ry3tfbo", templateParams)
+        .then(
+          function (response) {
+            console.log(
+              "Email de confirmation envoyé!",
+              response.status,
+              response.text
+            );
+          },
+          function (error) {
+            console.log("Erreur lors de l'envoi de l'email:", error);
+          }
+        );
+    }
+
+    // Animation du bouton
+    payButton.classList.add("reserved");
+
+    // Cacher l'indicateur de chargement
+    loading.style.display = "none";
+
+    // Affichage de la confirmation après un délai
+    setTimeout(() => {
+      confirmation.classList.add("show");
+    }, 500);
+  }, 2000);
+});
+
+// Fermeture de la confirmation
+closeConfirmation.addEventListener("click", function () {
+  // Redirection ou action après paiement
+  window.location.href = "inscripvip.html"; // Ou une page de téléchargement
+});
+
+// Fermeture de la confirmation en cliquant en dehors
+window.addEventListener("click", function (e) {
+  if (e.target === confirmation) {
+    confirmation.classList.remove("show");
+  }
+});
+
+// Animation d'entrée pour les éléments
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(() => {
+    document.querySelector(".header").style.animation = "fadeIn 0.8s ease-out";
+  }, 300);
+});
+    </script>
+</body>
+</html>

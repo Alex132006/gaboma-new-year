@@ -1,0 +1,938 @@
+<!DOCTYPE html> 
+<html lang="fr">     
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Réservation - Espace Premium</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> 
+    <style> 
+        * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 20px;
+      background: #0a0a20;
+      /* Couleur de fond de secours */
+    }
+
+    /* Image de fond optimisée */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(Standard.jpg) center/cover no-repeat;
+      z-index: -2;
+    }
+
+    /* Overlay d'assombrissement réglable */
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      z-index: -1;
+    }
+
+    .logo-aesgfr {
+      position: fixed;
+      top: 35px;
+      right: 50px;
+      width: 110px;
+      height: auto;
+      z-index: 999;
+      border-radius: 50%;
+      padding: 3px;
+      mix-blend-mode: multiply;
+      background: linear-gradient(to right, #2ac21967, #08a2d155);
+    }
+
+    .premium-logo {
+      position: fixed;
+      top: 35px;
+      left: 50px;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      z-index: 3;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.473);
+      background: linear-gradient(to right, #2ac21967, #08a2d155);
+      padding: 4px 12px;
+      border-radius: 16px;
+    }
+
+    .background-overlay {
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      background: rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.377);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(248, 248, 248, 0.815);
+      border-radius: 75px;
+      /* Border-radius augmenté à 75px */
+      box-shadow: 0 8px 20px rgb(0, 0, 0);
+      width: 100%;
+      max-width: 400px;
+      /* Largeur maximale réduite à 400px */
+      padding: 30px 25px;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      animation: fadeIn 0.6s ease-out;
+      text-align: center;
+      margin: 60px auto 30px;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(45deg, rgba(79, 172, 254, 0.418), rgba(0, 242, 254, 0.3));
+      border-radius: 75px 75px 0 0;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      color: white;
+    }
+
+    .header h2 {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-family: "Style Script", "cursive";
+      font-style: normal;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+      animation: slideIn 0.5s ease-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .form-group:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .form-group:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .form-group:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .input-with-icon {
+      position: relative;
+      width: 90%;
+      max-width: 250px;
+      margin: 0 auto;
+      display: block;
+      background: linear-gradient(45deg,
+          rgba(79, 172, 254, 0.055),
+          rgba(0, 241, 254, 0.048));
+      border-radius: 20px;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: rgba(79, 172, 254, 0.589);
+      font-size: 16px;
+      width: 16px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 15px 10px 35px;
+      border: 1px solid rgba(255, 255, 255, 0.743);
+      border-radius: 20px;
+      font-size: 16px;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgb(255, 255, 255);
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.479);
+      text-align: left;
+      opacity: 1;
+      font-weight: 400;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-reserve {
+      width: 140px;
+      padding: 12px;
+      background: linear-gradient(45deg,
+          rgba(79, 172, 254, 0.3),
+          rgba(0, 242, 254, 0.3));
+      border: 1px solid rgba(255, 255, 255, 0.459);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 8px 20px rgb(0, 0, 0);
+      border-radius: 20px;
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .btn-reserve:hover {
+      background: linear-gradient(to right, #67f97d84, #6376e1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-reserve:active {
+      transform: translateY(0);
+    }
+
+    .btn-reserve.reserved {
+      background: linear-gradient(to right, #28a745, #20c997);
+      pointer-events: none;
+    }
+
+    .reserved-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-reserve.reserved .reserved-icon {
+      opacity: 1;
+    }
+
+    .btn-reserve.reserved .button-text {
+      opacity: 0;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .confirmation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.818);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease-out;
+      box-shadow: 0 15px 35px rgb(0, 0, 0);
+      max-width: 90%;
+      width: 350px;
+    }
+
+    .confirmation.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .confirmation h2 {
+      color: #fff;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .confirmation p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .confirmation-icon {
+      font-size: 50px;
+      color: #20c997;
+      margin-bottom: 15px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .confirmation-close {
+      background: linear-gradient(45deg,
+          rgba(79, 172, 254, 0.3),
+          rgba(0, 242, 254, 0.3));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 10px 25px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .confirmation-close:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .loading {
+      display: none;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .loading i {
+      animation: spin 1s linear infinite;
+    }
+
+    /* Media Queries pour la responsivité améliorée */
+
+    @media (max-width: 768px) {
+      .logo-aesgfr {
+        width: 60px;
+        top: 10px;
+        right: 10px;
+      }
+
+      .premium-logo {
+        font-size: 14px;
+        top: 18px;
+        left: 10px;
+      }
+
+      body {
+        padding: 15px;
+      }
+
+      .container {
+        border-radius: 60px;
+        padding: 25px 20px;
+        margin: 50px auto 25px;
+      }
+
+      .container::before {
+        border-radius: 60px 60px 0 0;
+      }
+
+      .header h2 {
+        font-size: 22px;
+      }
+
+      .header p {
+        font-size: 15px;
+      }
+
+      .input-with-icon {
+        width: 95%;
+      }
+
+      .btn-reserve {
+        width: 140px;
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      .confirmation {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .confirmation h2 {
+        font-size: 20px;
+      }
+
+      .confirmation p {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-aesgfr {
+        width: 50px;
+        top: 8px;
+        right: 8px;
+      }
+
+      .premium-logo {
+        font-size: 12px;
+        top: 16px;
+        left: 8px;
+        padding: 3px 10px;
+      }
+
+      .container {
+        border-radius: 50px;
+        padding: 20px 15px;
+        margin: 45px auto 20px;
+      }
+
+      .container::before {
+        height: 3px;
+        border-radius: 50px 50px 0 0;
+      }
+
+      .header h2 {
+        font-size: 20px;
+      }
+
+      .header p {
+        font-size: 14px;
+      }
+
+      .form-group label {
+        font-size: 14px;
+      }
+
+      .form-control {
+        padding: 8px 12px 8px 32px;
+        font-size: 15px;
+      }
+
+      .input-with-icon i {
+        font-size: 14px;
+        left: 10px;
+      }
+
+      .btn-reserve {
+        width: 130px;
+        padding: 9px;
+        font-size: 14px;
+        border-radius: 14px;
+      }
+
+      .confirmation {
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .confirmation h2 {
+        font-size: 18px;
+      }
+
+      .confirmation p {
+        font-size: 13px;
+      }
+
+      .confirmation-icon {
+        font-size: 45px;
+      }
+
+      .confirmation-close {
+        padding: 8px 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        border-radius: 40px;
+        padding: 18px 12px;
+      }
+
+      .container::before {
+        border-radius: 40px 40px 0 0;
+      }
+
+      .header h2 {
+        font-size: 18px;
+      }
+
+      .input-with-icon {
+        width: 100%;
+      }
+
+      .btn-reserve {
+        width: 120px;
+      }
+    }
+
+    /* Pour les très grands écrans */
+
+    @media (min-width: 2000px) {
+      body::before {
+        background-size: contain;
+        background-color: #000;
+        /* Fond noir si l'image ne couvre pas tout */
+      }
+    }
+
+    /* Pour les écrans très allongés (mobile en mode paysage) */
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      body {
+        align-items: flex-start;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      .container {
+        margin: 20px auto;
+      }
+    }
+
+    /* Animations */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      25% {
+        transform: translate(10px, -10px);
+      }
+
+      50% {
+        transform: translate(-5px, 5px);
+      }
+
+      75% {
+        transform: translate(8px, 8px);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Social media buttons wrapper */
+    .wrapper {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 999;
+    }
+
+    /* Social buttons list */
+    .wrapper ul {
+      display: flex;
+      gap: 9px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Individual social icon button */
+    .wrapper .icon {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 35px rgb(0, 0, 0);
+      border: 1px solid rgba(255, 255, 255, 0.288);
+    }
+
+    /* Social icon font styling */
+    .wrapper .icon i {
+      font-size: 22px;
+      color: white;
+    }
+
+    /* Social icon hover animation */
+    .wrapper .icon:hover {
+      transform: scale(1.2);
+    }
+
+    /* Social icon hover colors */
+
+    .wrapper .facebook:hover {
+      background: #1d7df2;
+    }
+
+    .wrapper .twitter:hover {
+      background: #24a1de;
+    }
+
+    .wrapper .instagram:hover {
+      background: linear-gradient(45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%);
+    }
+
+    .wrapper .tiktok:hover {
+      background: #000000;
+    }
+
+    .wrapper .youtube:hover {
+      background: #cd201f;
+    }
+
+    .wrapper .whatsapp:hover {
+      background: rgb(47, 183, 47);
+    }
+
+    .wrapper .telephone:hover {
+      background: #333;
+    }
+
+    .wrapper .mail:hover {
+      background: #d71919;
+    }
+
+    .wrapper .telegram:hover {
+      background: #2aabee;
+    }
+
+    /* Footer text */
+    .footer {
+      margin-top: 50px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+      text-align: center;
+      position: relative;
+      width: 100%;
+    }
+    </style> 
+</head> 
+
+<body> 
+    <img src="aesgfr.jpg" alt="Logo AESGFR" class="logo-aesgfr" />
+  <div class="premium-logo">
+    <h5><em>STANDARD</em></h5>
+  </div>
+     
+    <div class="background-overlay"></div> 
+     
+    <div class="particles" id="particles"></div> 
+     
+    <div class="container"> 
+        <div class="header"> 
+            <h3>GABOMA NEW YEAR GALA</h3> 
+            <!-- <p>BILLET VIP</p> --> 
+        </div> 
+         
+        <form id="reservationForm"> 
+            <div class="form-group"> 
+                <label for="lastname">Nom</label> 
+                <div class="input-with-icon"> 
+                    <i class="fas fa-user"></i> 
+                    <input 
+                     type="text" 
+                     id="lastname" 
+                     class="form-control" 
+                     placeholder="Entrez votre nom" 
+                     autocomplete="family-name" 
+                     required 
+                     > 
+                </div> 
+            </div> 
+
+            <div class="form-group"> 
+                <label for="firstname">Prénom</label> 
+                <div class="input-with-icon"> 
+                    <i class="fas fa-user"></i> 
+                    <input  
+                        type="text"  
+                        id="firstname"  
+                        class="form-control"  
+                        placeholder="Entrez votre prénom" 
+                        autocomplete="given-name" 
+                        required 
+                    > 
+                </div> 
+            </div> 
+             
+            <div class="form-group"> 
+                <label for="email">Adresse Email</label> 
+                <div class="input-with-icon"> 
+                    <i class="fas fa-envelope"></i> 
+                    <input  
+                        type="email"  
+                        id="email"  
+                        class="form-control"  
+                        placeholder="Entrez votre email" 
+                        autocomplete="email" 
+                        required 
+                    > 
+                </div> 
+            </div> 
+             
+            <div class="btn-container"> 
+                <button type="submit" class="btn-reserve" id="reserveButton"> 
+                  <span class="button-text">Réserver</span> 
+                  <span class="reserved-icon"> 
+                        <i class="fas fa-check-circle"></i> Réservé 
+                  </span> 
+                </button> 
+            </div> 
+            <div class="loading" id="loading"> 
+                <i class="fas fa-spinner"></i> Envoi en cours... 
+            </div> 
+        </form> 
+    </div> 
+     
+    <div class="confirmation" id="confirmation"> 
+        <div class="confirmation-icon"> 
+            <i class="fas fa-check-circle"></i> 
+        </div> 
+        <h2>Réservation Confirmée!</h2> 
+        <p>Votre accès à l'espace Standard a été réservé avec succès. Un email de confirmation a été envoyé.</p> 
+        <a href="payestandard.html"><button class="confirmation-close" id="closeConfirmation">Payer la réservation</button></a> 
+    </div> 
+
+    <script> 
+        // Initialisation d'EmailJS 
+        (function() { 
+            emailjs.init("9ESKhIvGP_ouNuglQ"); // Remplacez par votre clé publique EmailJS 
+        })(); 
+
+        // Création de particules animées 
+        const particlesContainer = document.getElementById('particles'); 
+        const particleCount = 20; 
+         
+        for (let i = 0; i < particleCount; i++) { 
+            const particle = document.createElement('div'); 
+            particle.classList.add('particle'); 
+             
+            // Position et taille aléatoires 
+            const size = Math.random() * 8 + 2; 
+            const posX = Math.random() * 100; 
+            const posY = Math.random() * 100; 
+            const animationDelay = Math.random() * 5; 
+             
+            particle.style.width = `${size}px`; 
+            particle.style.height = `${size}px`; 
+            particle.style.left = `${posX}%`; 
+            particle.style.top = `${posY}%`; 
+            particle.style.animationDelay = `${animationDelay}s`; 
+            particle.style.opacity = Math.random() * 0.5 + 0.1; 
+             
+            particlesContainer.appendChild(particle); 
+        } 
+         
+        // Gestion de la réservation 
+        const form = document.getElementById('reservationForm'); 
+        const reserveButton = document.getElementById('reserveButton'); 
+        const confirmation = document.getElementById('confirmation'); 
+        const closeConfirmation = document.getElementById('closeConfirmation'); 
+        const loading = document.getElementById('loading'); 
+         
+        form.addEventListener('submit', function(e) { 
+            e.preventDefault(); 
+             
+            const lastname = document.getElementById('lastname').value; 
+            const firstname = document.getElementById('firstname').value; 
+            const email = document.getElementById('email').value; 
+             
+            // Validation basique 
+            if(!lastname || !firstname || !email) { 
+                alert('Veuillez remplir tous les champs'); 
+                return; 
+            } 
+             
+            // Afficher l'indicateur de chargement 
+            loading.style.display = 'block'; 
+            reserveButton.disabled = true; 
+             
+            // Préparer les paramètres pour EmailJS 
+            const templateParams = { 
+                from_name: `${firstname} ${lastname}`, 
+                from_email: email, 
+                to_name: "AESGFR", 
+                message: `Nouvelle réservation pour le Gala Gaboma Billet Standard\n\nNom: ${lastname}\nPrénom: ${firstname}\nEmail: ${email}`,
+                date: new Date().toLocaleString('fr-FR') 
+            }; 
+             
+            // Envoyer l'email via EmailJS 
+            emailjs.send('essongapea.b.a@gmail.com', 'template_ry3tfbo', templateParams) 
+                .then(function(response) { 
+                    console.log('SUCCESS!', response.status, response.text); 
+                     
+                    // Animation du bouton 
+                    reserveButton.classList.add('reserved'); 
+                     
+                    // Cacher l'indicateur de chargement 
+                    loading.style.display = 'none'; 
+                     
+                    // Affichage de la confirmation après un délai 
+                    setTimeout(() => { 
+                        confirmation.classList.add('show'); 
+                    }, 1000); 
+                }, function(error) { 
+                    console.log('FAILED...', error); 
+                    alert('Une erreur s\'est produite lors de l\'envoi. Veuillez réessayer.'); 
+                     
+                    // Cacher l'indicateur de chargement et réactiver le bouton 
+                    loading.style.display = 'none'; 
+                    reserveButton.disabled = false; 
+                }); 
+        }); 
+         
+        // Fermeture de la confirmation et redirection vers la page de paiement
+        closeConfirmation.addEventListener('click', function() {
+            // URL de la page de paiement (à remplacer par votre URL réelle)
+            const paymentPageUrl = "payestandard.html";
+            
+            // Redirection vers la page de paiement
+            window.location.href = paymentPageUrl;
+        }); 
+         
+        // Fermeture de la confirmation en cliquant en dehors 
+        window.addEventListener('click', function(e) { 
+            if (e.target === confirmation) { 
+                confirmation.classList.remove('show'); 
+                 
+                // Réinitialisation du formulaire 
+                form.reset(); 
+                 
+                // Réinitialisation du bouton après un délai 
+                setTimeout(() => { 
+                    reserveButton.classList.remove('reserved'); 
+                    reserveButton.disabled = false; 
+                }, 500); 
+            } 
+        }); 
+         
+        // Animation d'entrée pour les éléments 
+        document.addEventListener('DOMContentLoaded', function() { 
+            setTimeout(() => { 
+                document.querySelector('.header').style.animation = 'fadeIn 0.8s ease-out'; 
+            }, 300); 
+        }); 
+  </script> 
+</body> 
+</html>

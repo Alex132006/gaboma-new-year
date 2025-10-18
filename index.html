@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://api.emailjs.com; frame-ancestors 'none';" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <title>Gala - Gabon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  /* Reset and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Particle animation styles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 6s infinite linear;
+}
+
+/* Main body layout */
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  background: #00000000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+/* Firework effect styles */
+.firework {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  pointer-events: none;
+  animation: firework-animation 1s ease-out forwards;
+}
+
+@keyframes firework-animation {
+  0% {
+    transform: translate(var(--x), var(--y)) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translate(
+        calc(var(--x) + var(--particle-x)),
+        calc(var(--y) + var(--particle-y))
+      )
+      scale(0);
+    opacity: 0;
+  }
+}
+
+
+/* Logo positioning */
+.logo-aesgfr {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  width: 110px;
+  height: auto;
+  z-index: 999;
+  border-radius: 50%;
+  padding: 3px;
+  mix-blend-mode: multiply;
+  background: linear-gradient(to right, #08982044, #d108b0ac);
+}
+/* Background slider container */
+.slider-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+}
+
+/* Slider flex container */
+.slider {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  animation: slide 25s infinite;
+}
+
+/* Slider image styling */
+.slider img {
+  width: 25%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: blur(2px);
+  transform: scale(1.01);
+  transition: opacity 0.5s ease;
+}
+
+/* Slider animation keyframes */
+@keyframes slide {
+  0%,
+  15% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20%,
+  35% {
+    transform: translateX(-25%);
+    opacity: 1;
+  }
+  40%,
+  55% {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+  60%,
+  75% {
+    transform: translateX(-75%);
+    opacity: 1;
+  }
+  80%,
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/* Background overlay for darkening */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.168);
+  z-index: -1;
+}
+/* Main content container */
+.container {
+  background: rgba(0, 0, 0, 0.226);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 75px;
+  box-shadow: 0 8px 20px rgb(75, 75, 75);
+  width: 100%;
+  max-width: 600px;
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  animation: fadeIn 0.6s ease-out;
+  text-align: center;
+  margin: 60px auto 30px;
+}
+
+/* .container {
+  background: rgba(0, 0, 0, 0.226);
+  backdrop-filter: blur(2px);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgb(0, 0, 0);
+  width: 90%;
+  max-width: 600px;
+  padding: 40px 30px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.8s ease-out;
+  text-align: center;
+} */
+
+/* Header section styling */
+.header {
+  text-align: center;
+}
+
+/* .header h2 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 8px;
+  font-family: "Style Script", "cursive";
+  font-style: normal;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+} */
+
+/* Main title styling */
+.header h1 {
+  position: relative;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  margin-bottom: -20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Style Script", "cursive";
+  font-style: normal;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Subtitle paragraph styling */
+.theme {
+  position: relative;
+  top: 0px;
+  color: rgba(255, 254, 254, 0.95);
+  font-size: 17px;
+  margin: 1px auto;
+  line-height: 1.6;
+  max-width: 100%;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme2 {
+  font-family: "Sevillana", cursive;
+  font-style: normal;
+}
+
+/* Buttons container layout */
+.buttons-container {
+  align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  padding: 5px 0;
+}
+
+/* Row of buttons layout */
+.buttons-row {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px 10px;
+  position: relative;
+}
+
+.item:nth-child(1) {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.item:nth-child(2) {
+  grid-area: 3 / 1 / 4 / 3;
+}
+
+.item:nth-child(3) {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.item {
+  justify-self: center;
+  align-self: center;
+}
+
+
+/* Button base styles */
+.btn {
+  position: relative;
+  top: -50px;
+  left: auto;
+  right: auto;
+  width: 300px;
+  margin:  auto;
+  padding: 30px;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 8px 20px rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.894);
+}
+
+/* Button hover effect */
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 25px rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.178);
+}
+
+/* Button icon styling */
+.btn i {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Standard button background */
+.btn-standard {
+  background: linear-gradient(
+    45deg,
+    rgba(79, 172, 254, 0.3),
+    rgba(0, 241, 254, 0.473)
+  );
+  width: 20px;
+}
+
+/* Premium button background */
+.btn-premium {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 107, 107, 0.3),
+    rgba(255, 163, 108, 0.3)
+  );
+  width: 20px;
+}
+
+/* Info button background and layout */
+.btn-info {
+  align-items: center;
+  background: linear-gradient(
+    45deg,
+    rgba(40, 167, 69, 0.3),
+    rgba(32, 201, 151, 0.3)
+  );
+  width: 20px;
+}
+
+/* Modal dialog for info */
+.info-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(0, 0, 0, 0.26);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-out;
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.226);
+  max-width: 85%;
+  width: 550px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Modal show state */
+.info-modal.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Modal title styling */
+.info-modal h2 {
+  color: #4facfe;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+/* Modal paragraph styling */
+.info-modal p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 18px;
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* Modal list styling */
+.info-modal ul {
+  text-align: left;
+  margin: 25px 0;
+  padding-left: 25px;
+}
+
+/* Modal list item styling */
+.info-modal li {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Modal strong text color */
+.info-modal li strong {
+  color: #00f2fe;
+}
+
+/* Image lien*/
+.fa-image {
+  color: #00f2fe;
+  font-size: 25px;
+}
+
+/* Modal close button */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* Modal close button hover */
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Link color in modal */
+.lienimg {
+  color: #00f2fe;
+}
+/* Social media buttons wrapper */
+.wrapper {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 999;
+}
+
+/* Social buttons list */
+.wrapper ul {
+  display: flex;
+  gap: 9px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual social icon button */
+.wrapper .icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  box-shadow: 0 15px 35px rgb(0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.288);
+}
+
+/* Social icon font styling */
+.wrapper .icon i {
+  font-size: 22px;
+  color: white;
+}
+/* Social icon hover animation */
+.wrapper .icon:hover {
+  transform: scale(1.2);
+}
+/* Social icon hover colors */
+
+.wrapper .facebook:hover {
+  background: #1d7df2;
+}
+
+.wrapper .twitter:hover {
+  background: #24a1de;
+}
+
+.wrapper .instagram:hover {
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+}
+
+.wrapper .tiktok:hover {
+  background: #000000;
+}
+
+.wrapper .youtube:hover {
+  background: #cd201f;
+}
+
+.wrapper .whatsapp:hover {
+  background: rgb(47, 183, 47);
+}
+
+.wrapper .telephone:hover {
+  background: #333;
+}
+
+.wrapper .mail:hover {
+  background: #d71919;
+}
+
+.wrapper .telegram:hover {
+  background: #2aabee;
+}
+
+/* Footer text */
+.edition {
+  margin-top: 50px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+/* Container fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Particle floating animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -10px);
+  }
+  50% {
+    transform: translate(-5px, 5px);
+  }
+  75% {
+    transform: translate(8px, 8px);
+  }
+}
+
+/* Responsive design media queries */
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 550px;
+    padding: 35px 25px;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .logo-aesgfr {
+    width: 95px;
+    top: 25px;
+    right: 25px;
+  }
+  .container {
+    max-width: 550px;
+    padding: 32px 22px;
+  }
+  .header h1 {
+    font-size: 2.4rem;
+  }
+  .header p {
+    font-size: 1.05rem;
+  }
+  .btn {
+    min-width: 130px;
+    padding: 18px 22px;
+    font-size: 15.5px;
+  }
+  .btn i {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 992px) {
+  .logo-aesgfr {
+    width: 100px;
+    top: 30px;
+    right: 30px;
+  }
+  .container {
+    max-width: 500px;
+    padding: 30px 20px;
+  }
+  .header h1 {
+    font-size: 2.3rem;
+  }
+  .header p {
+    font-size: 1.1rem;
+  }
+  .btn {
+    min-width: 120px;
+    padding: 15px 20px;
+    font-size: 15px;
+  }
+  .btn i {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-aesgfr {
+    width: 90px;
+    top: 20px;
+    right: 20px;
+  }
+  .header h1 {
+    font-size: 2.1rem;
+    margin-bottom: 15px;
+  }
+  .header p {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+  .buttons-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .btn {
+    min-width: 200px;
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  .info-modal {
+    width: 90%;
+    padding: 30px 20px;
+  }
+  .info-modal h2 {
+    font-size: 24px;
+  }
+  .info-modal p,
+  .info-modal li {
+    font-size: 16px;
+  }
+  .wrapper {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+  .wrapper ul {
+    justify-content: center;
+  }
+  .slider img {
+    object-position: center 30%;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-aesgfr {
+    width: 80px;
+    top: 15px;
+    right: 15px;
+  }
+  .container {
+    padding: 25px 15px;
+    border-radius: 25px;
+    width: 95%;
+  }
+  .header h1 {
+    font-size: 1.9rem;
+  }
+  .header p {
+    font-size: 0.95rem;
+  }
+  .btn {
+    min-width: 160px;
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+  .btn i {
+    font-size: 18px;
+  }
+  .info-modal {
+    padding: 25px 15px;
+    border-radius: 15px;
+  }
+  .info-modal h2 {
+    font-size: 22px;
+  }
+  .modal-close {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  .wrapper .icon {
+    width: 40px;
+    height: 40px;
+  }
+  .wrapper .icon i {
+    font-size: 18px;
+  }
+  .footer {
+    font-size: 14px;
+  }
+  .slider img {
+    object-position: center 35%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-aesgfr {
+    width: 70px;
+    top: 12px;
+    right: 12px;
+  }
+  .container {
+    padding: 20px 12px;
+  }
+  .header h1 {
+    font-size: 1.7rem;
+  }
+  .header p {
+    font-size: 0.9rem;
+  }
+  .btn {
+    min-width: 140px;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .btn i {
+    font-size: 16px;
+  }
+  .wrapper .icon {
+    width: 38px;
+    height: 38px;
+  }
+  .wrapper .icon i {
+    font-size: 16px;
+  }
+  .footer {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+  .btn {
+    min-width: 120px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+  .wrapper {
+    bottom: 15px;
+  }
+  .wrapper ul {
+    gap: 8px;
+  }
+  .wrapper .icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+/* Landscape orientation adjustments */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .container {
+    margin: 20px auto;
+    padding: 20px 15px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .header p {
+    font-size: 0.9rem;
+    margin: 8px auto;
+  }
+  .buttons-container {
+    margin: 20px 0;
+    gap: 15px;
+  }
+  .btn {
+    padding: 10px 16px;
+    min-width: 150px;
+  }
+  .footer {
+    margin-top: 20px;
+  }
+  .slider-container {
+    height: 100vh;
+  }
+}
+/* Large screen adjustments */
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 700px;
+    padding: 50px 40px;
+  }
+  .header h1 {
+    font-size: 3.2rem;
+  }
+  .header p {
+    font-size: 1.4rem;
+  }
+  .btn {
+    min-width: 220px;
+    padding: 20px 30px;
+    font-size: 18px;
+  }
+  .btn i {
+    font-size: 24px;
+  }
+}
+/* Prevent zoom on iOS */
+
+@media screen and (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+/* Welcome message overlay */
+.welcome-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.024);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 100px;
+  padding: 40px 30px;
+  text-align: center;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-out;
+  box-shadow: 0 20px 40px rgb(178, 86, 86);
+  max-width: 85%;
+  width: 550px;
+  color: white;
+}
+
+.message-1 {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Style Script", "cursive";
+  font-size: 28px;
+  line-height: 1.7;
+  margin-bottom: -5px;
+}
+
+.message-2 {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Style Script", "cursive";
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0px;
+}
+
+.welcome-message h4 {
+  color: #4facfe;
+  margin-bottom: 0px;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+/* Accessibility: reduce motion */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .slider {
+    animation: none;
+  }
+}
+</style>
+</head>
+
+<body>
+  <img src="aesgfr.jpg" alt="Logo AESGFR" class="logo-aesgfr" />
+  <div class="slider-container">
+    <div class="slider">
+      <img src="1.png" alt="Gala 3" loading="lazy" />
+      <img src="2.jpg" alt="Gala 2" loading="lazy" />
+      <img src="3.jpg" alt="Gala 1" loading="lazy" />
+      <img src="4.jpg" alt="Gala 4" loading="lazy" />
+    </div>
+  </div>
+  <div class="background-overlay"></div>
+  <div class="particles" id="particles"></div>
+  <div class="container">
+    <div class="header">
+      <h1>GABOMA NEW YEAR GALA</h1>
+    </div>
+    <div>
+      <p class="theme"><strong>Theme:</strong><span class="theme2"> Luxe et Brillance Nocturne</span></p>
+    </div>
+
+    <div class="buttons-row">
+      <a href="inscripstandard.html" class="btn btn-standard item" id="btnStandard" rel="noopener">
+        <i class="fas fa-users"></i> Standard
+      </a>
+      <button class="btn btn-info item" id="btnInfo">
+        <i class="fas fa-info-circle"></i>
+        Infos
+      </button>
+      <a href="inscripvip.html" class="btn btn-premium item" id="btnPremium" rel="noopener">
+        <i class="fas fa-crown"></i> Premium
+      </a>
+    </div>
+  </div>
+
+  <div id="welcomeMessage" class="welcome-message">
+    <p class="message-1">AESGFR</p>
+    <p class="message-2">vous annonce</p>
+    <h4><strong>GABOMA NEW YEAR GALA 2026🥳</strong></h4>
+  </div>
+
+  <div class="info-modal" id="infoModal">
+    <button class="modal-close" id="closeModal" type="button" aria-label="Fermer la modal">
+      <i class="fas fa-times"></i>
+    </button>
+    <h2>
+      <i class="fas fa-info-circle"></i>Informations
+    </h2>
+    <p>
+      Bienvenue dans notre espace membre exclusif, conçu pour offrir une
+      expérience personnalisée et des fonctionnalités avancées à nos
+      utilisateurs.
+    </p>
+    <ul>
+      <li>
+        <strong>Accès Standard:</strong> en cliquant sur <strong>STANDARD</strong> 
+      </li>
+      <li>
+        <strong>Accès Premium:</strong> en cliquant sur <strong>PREMIUM</strong> 
+      </li>
+      <li>
+        <strong>Acces aux images du GALA:</strong> en cliquant sur l'icone suivant
+        <strong><a href="#" class="lienimg"><i
+              class="fa-regular fa-image"></i></a></strong>
+      </li>
+      <li>
+        <strong>Conduite a tenir</strong> Veillez respecter les etapes d'inscription conformement aux protocoles de reservation mis en place (Standard et Premium)</strong>
+      </li>
+    </ul>
+    <p>© GABOMA NEW YEAR GALA Edition 2026</p>
+  </div>
+
+  <div class="wrapper">
+    <ul>
+      <li class="icon whatsapp">
+        <a href="#" aria-label="WhatsApp" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+      </li>
+
+      <li class="icon telegram">
+        <a href="https://t.me/your_gala_group_link" aria-label="Telegram" rel="noopener noreferrer" target="_blank"><i
+            class="fa-brands fa-telegram"></i></a>
+      </li>
+
+      <li class="icon telephone">
+        <a href="#" aria-label="Téléphone" rel="noopener"><i class="fa fa-phone" aria-hidden="true"></i></a>
+      </li>
+
+      <li class="icon facebook">
+        <a href="https://www.facebook.com/Aesgfr.me?mibextid=wwXIfr" aria-label="Facebook" rel="noopener noreferrer"
+          target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+      </li>
+
+      <li class="icon instagram">
+        <a href="https://www.instagram.com/aesgfr.garu?igsh=MWRzb3dhZjlyZzAxZA==" aria-label="Instagram"
+          rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      </li>
+
+      <li class="icon tiktok">
+        <a href="https://www.tiktok.com/@aesgfr?_t=ZM-8ysYr511spi" aria-label="TikTok" rel="noopener noreferrer"
+          target="_blank"><i class="fab fa-tiktok"></i></a>
+      </li>
+
+      <li class="icon youtube">
+        <a href="https://youtube.com/@aesgfrgabonrussie?si=-Wi2OELsDH9kQ0Yc" aria-label="YouTube"
+          rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="edition">© GABOMA NEW YEAR GALA Edition 2026</div>
+
+  <script>
+    // Création de particules animées
+const particlesContainer = document.getElementById("particles");
+const particleCount = 40;
+
+for (let i = 0; i < particleCount; i++) {
+  const particle = document.createElement("div");
+  particle.classList.add("particle");
+
+  // Position et taille aléatoires
+  const size = Math.random() * 10 + 2;
+  const posX = Math.random() * 100;
+  const posY = Math.random() * 100;
+  const animationDelay = Math.random() * 5;
+  const hue = Math.floor(Math.random() * 360);
+
+  particle.style.width = `${size}px`;
+  particle.style.height = `${size}px`;
+  particle.style.left = `${posX}%`;
+  particle.style.top = `${posY}%`;
+  particle.style.animationDelay = `${animationDelay}s`;
+  particle.style.opacity = Math.random() * 0.5 + 0.1;
+  particle.style.background = `hsla(${hue}, 70%, 60%, 0.2)`;
+  particle.style.boxShadow = `0 0 15px hsla(${hue}, 70%, 60%, 0.5)`;
+  particlesContainer.appendChild(particle);
+}
+
+// Gestion des boutons
+const btnInfo = document.getElementById("btnInfo");
+const infoModal = document.getElementById("infoModal");
+const closeModal = document.getElementById("closeModal");
+
+// Bouton Informations - Fonctionnalité restaurée
+btnInfo.addEventListener("click", function () {
+  infoModal.classList.add("show");
+});
+
+// Fermeture de la modal
+closeModal.addEventListener("click", function () {
+  infoModal.classList.remove("show");
+});
+
+// Fermeture de la modal en cliquant en dehors
+window.addEventListener("click", function (e) {
+  if (e.target === infoModal) {
+    infoModal.classList.remove("show");
+  }
+});
+
+// Animation d'entrée pour les éléments
+document.addEventListener("DOMContentLoaded", function () {
+  // Show welcome message every time
+  const welcomeMessage = document.getElementById('welcomeMessage');
+  welcomeMessage.style.display = 'block';
+  setTimeout(() => {
+    welcomeMessage.style.opacity = '1';
+    welcomeMessage.style.visibility = 'visible';
+    // Trigger fireworks within the welcome message
+    const rect = welcomeMessage.getBoundingClientRect();
+    for (let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        const x = rect.left + Math.random() * rect.width;
+        const y = rect.top + Math.random() * rect.height;
+        createFirework(x, y);
+      }, i * 200);
+    }
+  }, 100);
+  setTimeout(() => {
+    welcomeMessage.style.opacity = '0';
+    welcomeMessage.style.visibility = 'hidden';
+    setTimeout(() => {
+      welcomeMessage.style.display = 'none';
+    }, 400);
+  }, 4000);
+
+  // Trigger fireworks on load
+  for(let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      createFirework(x, y);
+    }, i * 500);
+  }
+
+  setTimeout(() => {
+    const elements = document.querySelectorAll(".header, .btn");
+    elements.forEach((el, index) => {
+      el.style.animation = `fadeIn 0.5s ease-out ${
+        index * 0.1
+      }s forwards`;
+      el.style.opacity = "0";
+    });
+  }, 300);
+});
+
+// Prévention du clic droit
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+
+// Prévention du glisser-déposer
+document.addEventListener("dragstart", function (e) {
+  e.preventDefault();
+});
+
+// Détection des tentatives d'inspection
+document.addEventListener("keydown", function (e) {
+  // Désactiver F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && e.key === "I") ||
+    (e.ctrlKey && e.shiftKey && e.key === "C") ||
+    (e.ctrlKey && e.key === "u")
+  ) {
+    e.preventDefault();
+  }
+});
+
+function createFirework(x, y) {
+  const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'firework';
+    
+    const angle = (Math.PI * 2 * i) / particleCount;
+    const distance = 50 + Math.random() * 100;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    particle.style.setProperty('--x', '0px');
+    particle.style.setProperty('--y', '0px');
+    particle.style.setProperty('--particle-x', `${Math.cos(angle) * distance}px`);
+    particle.style.setProperty('--particle-y', `${Math.sin(angle) * distance}px`);
+    particle.style.background = color;
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    
+    document.body.appendChild(particle);
+    
+    // Supprimer l'élément après l'animation
+    setTimeout(() => {
+      particle.remove();
+    }, 1000);
+  }
+}
+
+// Feux d'artifice automatiques
+setInterval(() => {
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight;
+  createFirework(x, y);
+}, 2000);
+
+
+
+// Navigation select
+document.getElementById("choix").addEventListener("change", function () {
+  const targetId = this.value;
+  const targetElement = document.querySelector(targetId);
+  if (targetElement) {
+    window.scrollTo({
+      top: targetElement.offsetTop - 80,
+      behavior: "smooth",
+    });
+  }
+});
+
+// Cookie Consent Banner Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("accept-cookies");
+  const declineBtn = document.getElementById("decline-cookies");
+
+  // Check if user has already made a choice
+  const cookieChoice = localStorage.getItem("cookieConsent");
+
+  if (cookieChoice === "accepted" || cookieChoice === "declined") {
+    // Hide banner if choice already made
+    cookieBanner.style.display = "none";
+  } else {
+    // Show banner if no choice made
+    cookieBanner.style.display = "flex";
+  }
+
+  // Accept cookies
+  acceptBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "accepted");
+    cookieBanner.style.display = "none";
+    // Here you can add code to enable cookies/analytics if needed
+  });
+
+  // Decline cookies
+  declineBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "declined");
+    cookieBanner.style.display = "none";
+    // Here you can add code to disable non-essential cookies
+  });
+});
+  </script>
+</body>
+</html>
