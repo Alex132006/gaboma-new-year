@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css; connect-src 'self'; frame-ancestors 'none';" />
     <meta name="referrer" content="no-referrer" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
@@ -199,7 +197,16 @@
 }
 
 .bank-logo {
+  padding: 5px;
   margin-bottom: 10px;
+  background: #0000005e;
+  border-radius: 20px;
+  border: 1px solid #eeeeeeeb;
+  box-shadow: 1px 0 10px #fffcfc46;
+}
+.bank-logo:hover {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 5px 8px rgba(255, 255, 255, 0.257)) brightness(1.5);
 }
 
 .bank-logo img {
@@ -222,7 +229,7 @@
 
 .bank-logo.tinkoff:hover img {
   transform: translateY(-3px);
-  filter: drop-shadow(0 5px 8px rgba(255, 215, 0, 0.4)) brightness(1.5);
+  filter: drop-shadow(0 5px 8px rgba(255, 217, 0, 0)) brightness(1.5);
 }
 
 .bank-logo.vtb:hover img {
@@ -615,4 +622,3 @@ document.addEventListener("DOMContentLoaded", function () {
     </script>
 </body>
 </html>
-
