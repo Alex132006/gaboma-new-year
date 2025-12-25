@@ -49,7 +49,7 @@
 
 .background-overlay {
     -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(1px);
     background: rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 0;
