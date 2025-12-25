@@ -39,7 +39,7 @@
     position: relative;
     min-height: 100vh;
     padding: 20px;
-    background: url(VIP.jpg);
+    background: url(vip.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
