@@ -227,6 +227,54 @@ body {
     font-style: normal;
 }
 
+/* Countdown timer styles */
+.countdown {
+    text-align: center;
+    margin: 20px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.countdown h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: "Style Script", cursive;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.time {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4facfe;
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+}
+
+.label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 /* Buttons container layout */
 .buttons-container {
     align-items: center;
